@@ -1,3 +1,36 @@
+/* Waypoints */
+
+$(document).ready(function() {
+    if (document.getElementById("timeline")){
+        $("#timeline").css("display","none");
+    }
+    if (document.getElementById("timeline-tiny")){
+        $("#timeline-tiny").css("display","none");
+    }
+    $("section").each( function() {
+        
+        $(this).waypoint(function() {
+             $(this.element).addClass("animated fadeInUp");
+           
+        }, {
+                offset: '90%'
+        });
+        
+    });
+});
+
+/* Index - timeline*/
+
+$("a#index-about-button").on("click", function(event) {
+    event.preventDefault();
+    $("#timeline").css("display", "block");
+});
+
+$("a#index-about-button-tiny").on("click", function(event) {
+    event.preventDefault();
+    $("#timeline-tiny").css("display", "block");
+});
+
 /* Anchors */
 $('a.anchor').on('click', function(event) {
     event.preventDefault();
@@ -12,7 +45,9 @@ $('a.anchor').on('click', function(event) {
         scrollTop: spot-100 }, 500);
 });
 
+var isExternAnchor = false;
 $('a.outside-anchor').on('click', function(event) {
+    isExternAnchor = true;
     //event.preventDefault();
     /*console.log(window.location.hash);
     $('html,body').animate({
@@ -40,32 +75,13 @@ $('a.outside-anchor').on('click', function(event) {
     });*/
     
 });
+if (window.location.hash) {
+    $('html,body').animate({scrollTop: $(window.location.hash).offset().top-100});
+}
 
-$('html,body').animate({
-        scrollTop: $(window.location.hash).offset().top-100
-});
 
 
-/* Waypoints */
 
-$(document).ready(function() {
-    if (document.getElementById("timeline")){
-        $("#timeline").css("display","none");
-    }
-    if (document.getElementById("timeline-tiny")){
-        $("#timeline-tiny").css("display","none");
-    }
-    $("section").each( function() {
-        
-        $(this).waypoint(function() {
-             $(this.element).addClass("animated fadeInUp");
-           
-        }, {
-                offset: '90%'
-        });
-        
-    });
-});
 
 $("#jam-body").colorScroll( {
     colors: [{
@@ -388,15 +404,3 @@ $(".tag-f-tiny").on("click", function(event) {
 
 });
 
-/* Index - timeline*/
-
-$("#index-about-button").on("click", function(event) {
-    event.preventDefault();
-    $("#timeline").css("display", "block");
-});
-
-$("#index-about-button-tiny").on("click", function(event) {
-    event.preventDefault();
-   
-    $("#timeline-tiny").css("display", "block");
-});
