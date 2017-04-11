@@ -1,3 +1,51 @@
+/* Anchors */
+$('a.anchor').on('click', function(event) {
+    event.preventDefault();
+    var target =  $(this).attr('href');
+    var spot = $(target).offset().top;
+    console.log(spot);
+    //window.scroll(0, spot-1000);
+    /*document.querySelector(target).scrollIntoView({ 
+        behavior: 'smooth' 
+    });*/
+    $('html, body').animate({
+        scrollTop: spot-100 }, 500);
+});
+
+$('a.outside-anchor').on('click', function(event) {
+    //event.preventDefault();
+    /*console.log(window.location.hash);
+    $('html,body').animate({
+        scrollTop: $(window.location.hash).offset().top-100
+    });
+    $(document).ready(function() {
+        $("#big-title").offset().top;
+        window.scroll(0, 500);
+        console.log("hi");
+    });
+   
+    if (window.location.hash) {
+        scroll(0,0);
+    }
+    setTimeout(function() { scroll(0,0); }, 1);*/
+    
+    
+    
+   
+    
+    
+    //window.scroll(0, spot-1000);
+    /*document.querySelector(target).scrollIntoView({ 
+        behavior: 'smooth' 
+    });*/
+    
+});
+
+$('html,body').animate({
+        scrollTop: $(window.location.hash).offset().top-100
+});
+
+
 /* Waypoints */
 
 $(document).ready(function() {
