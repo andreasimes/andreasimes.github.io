@@ -1,6 +1,7 @@
 /* Waypoints */
 
 $(document).ready(function() {
+    console.log("hi");
     if (document.getElementById("timeline")){
         $("#timeline").css("display","none");
     }
@@ -19,13 +20,69 @@ $(document).ready(function() {
     });
 });
 
-/* Index - timeline*/
+/* Index - navbar for sticky behavior when scrolling */
+$(document).on('scroll', function() {
+    if ($("#index-navbar").scrollTop() != 0) {
+        $("#index-navbar").removeClass("nav");
+        $("#index-navbar").addClass("navs");
+    }
+    else if ($("#index-navbar").scrollTop() == 0) {
+        $("#index-navbar").removeClass("navs");
+        $("#index-navbar").addClass("nav");
+    }
 
+    
+    /*if ($(window).scrollTop() > $("#work-samples").position()['top']) {
+        console.log("hello");
+        $("#nav-port").css("border-bottom", "#000000 4px solid");
+    }*/
+    navPosition("#work-samples", "#nav-port");
+    navPosition("#index-about-wrap", "#nav-about");
+});
+
+/* index - anchor link selection behavior */
+function navPosition(anchorElement, navElement) {
+    if ($(window).scrollTop() > 500 && $(window).scrollTop() > $(anchorElement).position()['top'] -100) {
+        $(".top-nav").children().each(function() {
+            $(this).removeClass("nav-selected");
+        });
+        $(navElement).addClass("nav-selected");
+    }
+    else if ($(window).scrollTop() < 500) {
+        $(".top-nav").children().each(function() {
+            $(this).removeClass("nav-selected");
+        });
+    }
+}
+
+/* index mouse over nav bar elements */
+$(".top-nav").children().each(function() {
+    var isClicked = false;
+    $(this).on('click', function() {
+        $(this).addClass("nav-selected");
+        isClicked = true;
+    });
+    $(this).on('mouseenter', function() {
+        $(this).addClass("nav-selected");
+    });
+    $(this).on('mouseout', function() {
+        if (isClicked == false) {
+            $(this).removeClass("nav-selected");
+        }
+    });
+});
+
+
+/* Index - timeline*/
+$(document).ready(function() {
+    $("p#offline").css("display", "block");
+});
+
+/* Index - timeline*/
 $("a#index-about-button").on("click", function(event) {
     event.preventDefault();
     $("#timeline").css("display", "block");
 });
-
 $("a#index-about-button-tiny").on("click", function(event) {
     event.preventDefault();
     $("#timeline-tiny").css("display", "block");
@@ -83,7 +140,7 @@ if (window.location.hash) {
 
 
 
-$("#jam-body").colorScroll( {
+/*$("#jam-body").colorScroll( {
     colors: [{
         color: '#FFFFFF',
         position: 0
@@ -100,7 +157,7 @@ $("#jam-body").colorScroll( {
         color: '#FFFFFF',
         position: 3000
     }]
-});
+});*/
 
 $("#nuance-body").colorScroll( {
     colors: [{
@@ -132,7 +189,7 @@ $("#youni-body").colorScroll( {
     }]
 });
 
-$("#index-body").colorScroll( {
+/*$("#index-body").colorScroll( {
     colors: [{
         color: '#FFFFFF',
         position: 1000
@@ -145,7 +202,7 @@ $("#index-body").colorScroll( {
         color: '#FFFFFF',
         position: 1700
     }]
-});
+});*/
 
 
 /* Waypoint animation function */

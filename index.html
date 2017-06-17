@@ -37,12 +37,20 @@
 					"making some avocado toast."
 							];
 		
-        function rotateTerm() {
+        function rotateTermSmall() {
           var ct = $("#rotate").data("term") || 0;
-          $("#rotate").data("term", ct == terms.length -1 ? 0 : ct + 1).text(terms[ct]).fadeIn().delay(2000).fadeOut(200, rotateTerm);
+          $("#rotate").data("term", ct == terms.length -1 ? 0 : ct + 1).text(terms[ct]).fadeIn().delay(2000).fadeOut(200, rotateTermSmall);
             
         }
-        $(rotateTerm);	
+        $(rotateTermSmall);
+            
+        function rotateTermBig() {
+          var ct = $("#rotateBig").data("term") || 0;
+          $("#rotateBig").data("term", ct == terms.length -1 ? 0 : ct + 1).text(terms[ct]).fadeIn().delay(2000).fadeOut(200, rotateTermBig);
+            
+        }
+        
+        $(rotateTermBig);
 
         function click() {
         if (event.button==2) {
@@ -71,12 +79,12 @@
 
 	<body id="index-body">
         <!-- Navbar -->
-        <div class="nav">
+        <div class="nav" id="index-navbar">
             <ul class="top-nav">
-                <li class="inline-li"><a class="anchor" href="#index-about">about</a></li>
-                <li class="inline-li"><a class="anchor" href="#skill_title">work</a></li>
-                <li class="inline-li"><a href="AndreaSimesResume.pdf">resume</a></li>
-                <li class="inline-li"><a href="http://www.linkedin.com/in/andreavsimes"><img id="linkedin" src="images/social-linkedin copy.png" /></a></li>
+                <li class="inline-li" id="nav-about"><a class="anchor" href="#index-about">ABOUT</a></li>
+                <li class="inline-li" id="nav-port"><a class="anchor" href="#skill_title">PORTFOLIO</a></li>
+                <li class="inline-li"><a href="AndreaSimesResume.pdf">RESUME</a></li>
+                <!--<li class="inline-li"><a href="http://www.linkedin.com/in/andreavsimes"><img id="linkedin" src="images/social-linkedin copy.png" /></a></li>-->
             </ul>
 
             <div class="go_home">
@@ -93,17 +101,33 @@
             <div class="overlay">
 					<div id="hero">
 					</div>
+                
             </div>
-            <h1 class="hero more-track fullscreen-big-title" id="big-title">Hi, I'm Andrea.</h1>
-            <h3 class="display-4 fullscreen-big-title text-center" id="big-subtitle">I’m a deliberate designer and creative developer.</h3>
+            
+            <div id="index-land-cta">
+                <h1 class="more-track fullscreen-big-title" id="big-title">Hi, I'm Andrea.</h1>
+                <h3 class="fullscreen-big-title text-center subtitle" id="big-subtitle">I’m a deliberate designer and creative developer.</h3>
+                <div id="index-button-land-group">
+                    <a class="cta-button anchor" href="#work-samples" id="index-land-button"><p class="cta-button-text" >VIEW MY PORTFOLIO</p></a>
+                    <a class="cta-button-2" href="mailto:andrea.simes@gmail.com?subject=Hi!" id="index-land-contact-button"><p class="cta-button-text-2" id="">CONTACT ME</p></a>
+                </div>
+                
+            </div>
+            
         </div>
         
         <!-- Hero when not fullscreen -->
         <div class="hidden-xl-up">
         <div class="jumbotron jumbotron-fluid front">
             <!--<div class="container">-->
+            <div id="index-land-cta">
                 <h1 class="d-block full-width more-track px1" id="index-big-title-tiny">Hi, I'm Andrea.</h1>
                 <h8 class="mx-auto d-block full-width my2 txt-center" id="big-subtitle-tiny">I’m a deliberate designer and creative developer.</h8>
+                <div id="index-button-land-group-tiny">
+                    <a class="cta-button" href="#work-samples" id="index-land-button"><p class="cta-button-text" >VIEW MY PORTFOLIO</p></a>
+                    <a class="cta-button-2" href="mailto:andrea.simes@gmail.com?subject=Hi!" id="index-land-contact-button"><p class="cta-button-text-2" id="">CONTACT ME</p></a>
+                </div>
+            </div>
             <!--</div>-->
         </div>
         </div>
@@ -133,7 +157,7 @@
                        </div>
                         <div class="portfolio-links">
                             <h4>Jam</h4>
-                            <h7>SUMMER 2015</h7>
+                            <h7>Summer 2015</h7>
                         </div>
                         
                        </a>
@@ -150,7 +174,7 @@
 					       </div>
                         <div class="portfolio-links">
                             <h4>Youni</h4>
-                            <h7>SPRING 2015</h7>
+                            <h7>Spring 2015</h7>
                         </div>
                             
 					   </a>
@@ -168,7 +192,7 @@
 					       </div>
                         <div class="portfolio-links">
                             <h4>Design for America</h4>
-                            <h7>FALL 2016</h7>
+                            <h7>Fall 2016</h7>
                         </div>
                             
 					   </a>
@@ -184,8 +208,8 @@
 						      <img class="displayed" src="images/Nuance_Communications_logo.svg.png" id="case" alt="credit card checkout sample" />
 					       </div>
                         <div class="portfolio-links">
-                            <h4>Nuance Communications</h4>
-                            <h7>SUMMER 2016</h7>
+                            <h4 class="index-company-name">Nuance Communications</h4>
+                            <h7>Summer 2016</h7>
                         </div>
                             
 					   </a>
@@ -321,39 +345,46 @@
                  
             </div>
             
-        </div>
-                 
-                    
-                 
-                 
+        </div>   
         
         <!-- Timeline -->
-        <div class="container no-gutters">
-            
-            <div class="hidden-lg-down">
+        <div id="index-about-wrap">
+            <div class="container no-gutters">
+                <div class="hidden-lg-down">
                 <section id=index-about>
                     <h2 class="index-subtitle-tiny more-track a-left">About me</h2>
                     <div class="col-md-12" id="index-about-text">
-                        <p>I'm a human-centered designer, working at the intersection of people, technology, code, and design, to craft experiences that are thoughtful and delightful.  </p>
-                        <p id="offline">On the weekend, you might find me <span id="rotate">this</span></p>
+                        <p>
+                        I work at the intersection of people, code, and design, to craft experiences that are thoughtful and delightful.
+                   
+                        I'm always looking for ways to become a better designer so I love to hear about new design adventures seeking to make a measurable impact in users' everyday lives.
+                        
+                        </p>
+                        <p id="offline">On the weekend, you might find me <span id="rotateBig">this</span></p>
 
                         <!--<div id="contact">Leave me a note!</div>-->
                         <!--<div id="canvasDiv" class="hi"></div>-->
-                        <a class="tag" href="#" id="index-about-button"><p id="index-about-story">Cool, so what's your story?</p></a>
+                        <a class="cta-button" href="#" id="index-about-button"><p class="cta-button-text" id="index-about-story">COOL, SO WHAT'S YOUR STORY?</p></a>
+                        <a class="cta-button-2" href="#" id="index-about-button"><p class="cta-button-text-2" id="index-about-chat">LET'S CHAT</p></a>
                     </div>
                     <div class="clearfix"></div>
 
                 </section>
             </div>
-            <div class="hidden-xl-up">
+                <div class="hidden-xl-up">
                 <section id=index-about>
                     <h2 class="index-subtitle-tiny more-track a-left">About me</h2>
                     <!--<div class="col-md-2">
                         <img class="full-width" id="me-tiny" src="images/andrea-circle.png" />
                     </div>-->
                     <div class="col-md-10" id="index-about-text">
-                        <p>I'm a human-centered designer, working at the intersection of people, technology, code, and design, to craft experiences that are thoughtful and delightful.  </p>
-                        <p id="offline">On the weekend, you might find me <span id="rotate">this</span></p>
+                        <p>
+                        I work at the intersection of people, code, and design, to craft experiences that are thoughtful and delightful.
+                   
+                        I'm always looking for ways to become a better designer so I love to hear about new design adventures seeking to make a measurable impact in users' everyday lives.
+                        
+                        </p>
+                        <p id="offline">On the weekend, you might find me <span class="rotate" id="rotate">this</span></p>
 
                         <!--<div id="contact">Leave me a note!</div>-->
                         <!--<div id="canvasDiv" class="hi"></div>-->
@@ -363,7 +394,9 @@
 
                 </section>
             </div>
-                
+            </div>
+        </div>
+        <div class="container no-gutters">        
             <div class="hidden-sm-down">
                 <section id="timeline">
                      <!-- LEFT -->
@@ -831,7 +864,7 @@
         <!-- footer -->
 		<div id="footer1">
 			<li class="inline-li">
-                <a href="mailto:avs2151@columbia.edu">avs2151@columbia.edu &middot;&nbsp;</a>
+                <a href="mailto:andrea.simes@gmail.com">andrea.simes@gmail.com &middot;&nbsp;</a>
                 <a href="http://www.linkedin.com/in/andreavsimes">LinkedIn</a>
             </li>
             <li class="inline-li">&middot;&nbsp;
